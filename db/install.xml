@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/assign/submission/pde/db" VERSION="20250511" COMMENT="XMLDB file for assignsubmission_pde">
+  <TABLES>
+    <TABLE NAME="assignsubmission_pde_log" COMMENT="Stores submission history and feedback for PDE assignments">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="assignment" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="Assignment ID"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="Moodle user ID"/>
+        <FIELD NAME="student_hash" TYPE="char" LENGTH="128" NOTNULL="false" COMMENT="Hashed student ID for Majordomo"/>
+        <FIELD NAME="attempt_number" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="1" COMMENT="Submission attempt number"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" COMMENT="Unix timestamp of submission"/>
+        <FIELD NAME="violations_count" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" COMMENT="Total violations found"/>
+        <FIELD NAME="topic_results" TYPE="text" NOTNULL="false" COMMENT="JSON of pass/fail per topic"/>
+        <FIELD NAME="feedback" TYPE="text" NOTNULL="false" COMMENT="Last AI feedback text"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="assignment_userid" UNIQUE="false" FIELDS="assignment, userid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>
